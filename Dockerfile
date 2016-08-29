@@ -28,3 +28,5 @@ EXPOSE 9117
 
 # run script to set uid, gid and permissions
 CMD ["/bin/bash", "/scripts/init.sh"]
+
+HEALTHCHECK CMD curl --fail http://localhost:9117/Admin/Dashboard || exit 1
