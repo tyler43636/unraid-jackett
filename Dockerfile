@@ -5,8 +5,8 @@ MAINTAINER Tyler Payne <tyler43636@gmail.com>
 # install jackett
 RUN apt-get -q update && \
   apt-get install -qy wget libcurl4-openssl-dev bzip2 supervisor && \
-  export JACKETTVER=$(wget -q https://github.com/Jackett/Jackett/releases/latest -O - | grep -E \/tag\/ | awk -F "[><]" '{print $3}') && \
-  wget --no-verbose -P /tmp https://github.com/Jackett/Jackett/releases/download/$JACKETTVER/Jackett.Binaries.Mono.tar.gz && \
+  export JACKETTDL=$(wget -q https://api.github.com/repos/Jackett/Jackett/releases/latest -O - | grep browser_download_url | head -n 1 | cut -d '"' -f 4) && \
+  wget --no-verbose -P /tmp $JACKETTDL && \
   tar -xvf /tmp/Jackett* -C /opt && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
