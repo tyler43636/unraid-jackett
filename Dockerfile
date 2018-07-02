@@ -1,4 +1,4 @@
-FROM mono:4.8
+FROM mono:5.12
 
 MAINTAINER Tyler Payne <tyler43636@gmail.com>
 
